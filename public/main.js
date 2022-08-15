@@ -1,31 +1,35 @@
-async function init() {
-  let rustApp = null
+async function init(){
+    let rustApp = null
 
-  try {
-    rustApp = await import('../pkg')
-  } catch(err) {
-    console.error(err)
-    return;
-  }
+    try{
+        rustApp = await import('../pkg');
+    }catch(e){
+        console.error(e);
+        return;
+    }
 
-  console.log(rustApp)
+    const rust = import("../pkg");
+    console.log(rust);
+    rust.then((m) => m.greet("World!")).catch(console.error);
 
-  const input = document.getElementById('upload')
-  const fileReader = new FileReader()
 
-  fileReader.onloadend = () => {
-    let base64 = fileReader.result.replace(
-      /^data:image\/(png|jpeg|jpg);base64,/, ''
-    )
-    let img_data_url = rustApp.grayscale(base64)
-    document.getElementById('new-img').setAttribute(
-      'src', img_data_url
-    )
-  }
+    console.log(rustApp);
 
-  input.addEventListener('change', () => {
-    fileReader.readAsDataURL(input.files[0])
-  })
+    const input = document.getElementById('upload')
+    const fileReader = new FileReader()
+
+    fileReader.onload = () =>{
+        let base64 = fileReader.result.replace(
+            /^data:image\/(png|jpeg|jpg);base64,/,''
+        )
+        
+        let img_data_url = rustApp.grayscale(base64);
+        document.getElementById("new-img").setAttribute("src", img_data_url);
+    }
+
+    input.addEventListener('change', () => {
+        fileReader.readAsDataURL(input.files[0])
+    })
 }
 
 init()
