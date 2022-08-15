@@ -7,7 +7,7 @@ use image::ImageOutputFormat::Png;
 
 #[wasm_bindgen]
 pub fn grayscale(encoded_file: &str) -> String{
-    log(&'called'.into());
+    log(&"called".into());
     let base64_to_vector = decode(encoded_file).unwrap();
     log(&"Image decoded".into());
 
@@ -17,7 +17,7 @@ pub fn grayscale(encoded_file: &str) -> String{
     img = img.grayscale();
     log(&"Grayscale effect applied".into());
 
-    let mut buffer = vec![]
+    let mut buffer = vec![];
     img.write_to(&mut buffer, Png).unwrap();
     log(&"new image written".into());
 
