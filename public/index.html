@@ -36,6 +36,23 @@
         transform: translateX(25%);
       }
     }
+
+    #download-button {
+      display: none;
+    }
+
+    .filter-switch label {
+      cursor: pointer;
+    }
+
+    .filter-switch-item input:checked+label {
+      color: inherit;
+    }
+
+    .filter-switch-item input:not(:checked)+label {
+      --bg-opacity: 0;
+      box-shadow: none;
+    }
   </style>
 </head>
 
@@ -49,13 +66,57 @@
       <h1 class="text-5xl mb-8">Image Effects</h1>
       <p class="mb-4">Need to do some basic image manipulation? Just upload your image below. We'll take care of the
         rest.</p>
+      <ul id="filter1"
+        class="filter-switch inline-flex items-center relative h-10 p-1 space-x-1 bg-gray-200 rounded-md font-semibold text-blue-600 my-4">
+        <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+          <input type="radio" name="filter" id="filter1-0" class="sr-only" value="grayscale" checked>
+          <label for="filter1-0"
+            class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow">
+            grayscale
+          </label>
+          <div aria-hidden="true" class="filter-active"></div>
+        </li>
+        <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+          <input type="radio" name="filter" id="filter1-1" value="blur" class="sr-only">
+          <label for="filter1-1"
+            class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow">
+            Blur
+          </label>
+        </li>
+        <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+          <input type="radio" name="filter" id="filter1-2" value="brighten" class="sr-only">
+          <label for="filter1-2"
+            class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow">
+            Brighten
+          </label>
+        </li>
+        <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+          <input type="radio" name="filter" id="filter1-3" value="flipv" class="sr-only">
+          <label for="filter1-3"
+            class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow">
+            Flip vertically
+          </label>
+        </li>
+        <li class="filter-switch-item flex relative h-8 bg-gray-300x">
+          <input type="radio" name="filter" id="filter1-4" value="fliph" class="sr-only">
+          <label for="filter1-4"
+            class="h-8 py-1 px-2 text-sm leading-6 text-gray-600 hover:text-gray-800 bg-white rounded shadow">
+            Flip horizontally
+          </label>
+        </li>
+      </ul>
       <label class="bg-pink-600	text-white w-full p-6 block cursor-pointer font-bold mb-4">
         <!-- File Input -->
         <input type="file" id="upload" accept=".png" class="hidden">
         Upload PNG Image
       </label>
+
       <!-- Image -->
-      <a href="#" download=""><img id="new-img" class="w-auto mx-auto"></a>
+      <img id="new-img" class="w-auto mx-auto">
+      <label id="download-button" class="bg-pink-600	text-white w-full p-6 block cursor-pointer font-bold mb-4 mt-4">
+        <!-- File Input -->
+        <a id="download-img" href="#" download>Download</a>
+      </label>
     </div>
 
   </div>
