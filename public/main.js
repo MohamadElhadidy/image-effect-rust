@@ -40,7 +40,6 @@ async function init() {
   input.addEventListener("change", () => {
     fileReader.readAsDataURL(input.files[0]);
     document.getElementById("new-img").setAttribute("src", '');
-    $( "#new-img" ).load(window.location.href + " #new-img" );
   });
 }
 
